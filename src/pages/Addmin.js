@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useState, useEffect } from 'react'
 import { Form, Row, Col, Button } from 'react-bootstrap'
 
 import Foor from '../components/formGroup/Foor';
@@ -6,17 +7,20 @@ import Room from '../components/formGroup/Room';
 import Section from '../components/formGroup/Section';
 
 function Addmin(props) {
-   const miterbefore = 1456;
-   const [miterafter, setMiterafter] = useState(miterbefore);
-   const name = 'สามารถ พยัคฆา'
    const {
       section,
       foor,
       room,
+      name,
+      jaya,
+      miter,
       setSection,
       setFoor,
       setRoom,
-    } = props;
+      setName,
+      setJaya,
+      setMiter
+   } = props;
 
    const select_futeur = () => { 
       // CHECK ROOM
@@ -35,25 +39,23 @@ function Addmin(props) {
          }
       }        
    }
+   
+   useEffect( () => {
+      fetch(`http://localhost:3300/api/users/${section}/${foor}/${room}`)
+         .then(res => res.json())
+         .then(data => {
+            setName(data.name)
+            setJaya(data.jaya)
+            setMiter(data.miter)
+         })
+   }, [room, foor, section])
 
-   // VALIDATE MITER INPUT
+   console.log(miter)
 
-   const AfterMiter = (e) => {
-      setMiterafter(e.target.value);
-   }
- 
    const push_userinput = (e) => {
-      e.preventDefault();   
-      if (miterafter.toString().length === 4) {
-         console.log('send value')
-         setMiterafter(miterbefore)
-         select_futeur()
-         
-      }else{
-         alert('กรอกเลให้ถูกต้อง')
-      }
-      // validate user_input
-      
+      e.preventDefault(); 
+      // POST API
+      select_futeur()
    }
 
    return (
@@ -68,23 +70,23 @@ function Addmin(props) {
 
             <Form.Group>
                <Form.Label>name</Form.Label>
-               <Form.Control type='text' value={name} readOnly={true}  />
+               <Form.Control type='text' value={name === '' || name === undefined ? 'no user': name} readOnly={true}  />
             </Form.Group>
 
             <Row>
                <Form.Group as={Col} >
                   <Form.Label>ครั้งก่อน</Form.Label>
-                  <Form.Control type="number" value={miterbefore} readOnly={true} />
+                  <Form.Control type="number"  readOnly={true} />
                </Form.Group>
 
                <Form.Group as={Col} >
                   <Form.Label>ครั้งหลัง</Form.Label>
-                  <Form.Control onChange={AfterMiter} type="number" placeholder={miterafter} value={miterafter} />
+                  <Form.Control type="number" />
                </Form.Group>
             </Row>
 
             <Form.Group className=' d-flex justify-content-end'>
-               <Button className='mt-4'  type="submit">
+               <Button className='mt-4' type="submit">
                   create
                </Button>
             </Form.Group>

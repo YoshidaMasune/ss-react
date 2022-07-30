@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import NavbarTop from '../components/NavbarTop';
 import ListUsers from '../components/ListUsers';
-import { Outlet } from 'react-router-dom';
 
-function Home() {
+function Home(props) {
 
-  const [users, setUsers] = useState([]);
+  const {users, setUsers} = props
 
   useEffect( () => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-    .then(response => response.json())
-    .then( data => setUsers(data))
-  }, []);
-  
+    fetch('http://localhost:3300/api/users')
+   .then(response => response.json())
+   .then( data => setUsers(data))
+}, []);
+
+  console.log(users);
   return (
     <>
     <div className="container">

@@ -15,11 +15,13 @@ function EditUser(props) {
       room,
       name,
       jaya,
+      user,
       setSection,
       setFoor,
       setRoom,
       setName,
-      setJaya
+      setJaya,
+      setUser
     } = props;
 
   const submit_edit = (e) => {
@@ -37,7 +39,7 @@ function EditUser(props) {
         </Row>
 
         <Row>
-          <Name name={name} setName={setName} />
+          <Name name={name} setName={setName} user={user} />
           <Jaya jaya={jaya} setJaya={setJaya} />
         </Row>
 

@@ -14,7 +14,7 @@ function ListUsers(props) {
               <th>ห้อง</th>
               <th>ชื่อ</th>
               <th>ราคา</th>
-              <th>details</th>
+              <th className='text-center'>รายละเอียด</th>
             </tr>
           </thead>
 
@@ -23,7 +23,7 @@ function ListUsers(props) {
               users.map(user => {
                 return (
                   <tr key={user.id}>
-                    <ListUserItem user={user} />
+                    <ListUserItem user={user} miter={user.miter} />
                   </tr>
                 )
               })

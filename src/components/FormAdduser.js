@@ -1,4 +1,5 @@
 import { Form, Button, Row } from 'react-bootstrap';
+import axios from 'axios'
 
 import Foor from './formGroup/Foor';
 import Room from './formGroup/Room';
@@ -9,17 +10,9 @@ import Name from './formtext/Name'
 
 function FormAdduser(props) {
    const {
-      section,
-      foor,
-      room,
-      name,
-      jaya,
-      setSection,
-      setFoor,
-      setRoom,
-      setName,
-      setJaya
-    } = props;
+      section,foor,room,name,jaya,
+      setSection,setFoor,setRoom,setName,setJaya
+   } = props;
 
    const select_futeur = () => { 
       // CHECK ROOM
@@ -40,16 +33,32 @@ function FormAdduser(props) {
    }
 
    const push_userinput = (e) => {
-      e.preventDefault();   
-      setName('');
-      setJaya('');
-   
+      e.preventDefault(); 
+      
       // validate user_input
       if(name === '' || jaya === ''){
          alert("input is not validation")
-      }else{
+      }else{  
+      //----> post API <----
          select_futeur()
+         axios.post('http://localhost:3300/api/users/create', {
+         name: name,
+         jaya: jaya,
+         section: section,
+         foor: foor,
+         room: room,
+       })
+       .then(function (response) {
+         console.log(response);
+       })
+       .catch(function (error) {
+         console.log(error);
+       });
+         // send data to /users/create
       }
+
+      setName('');
+      setJaya('');
    }
  
    return (
