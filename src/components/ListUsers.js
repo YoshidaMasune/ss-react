@@ -22,9 +22,9 @@ function ListUsers(props) {
             {
               users.map(user => {
                 return (
-                  <tr key={user.id}>
-                    <ListUserItem user={user} miter={user.miter} />
-                  </tr>
+               
+                    <ListUserItem user={user} miter={user.miter} key={user.userId} />
+                  
                 )
               })
             }

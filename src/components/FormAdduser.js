@@ -40,14 +40,14 @@ function FormAdduser(props) {
       if(name === '' || jaya === '' || name === undefined || jaya === undefined ){
          alert("input is not validation")
       }else{  
-      //----> post API <----
+      //----> post API <--- send data to /users/create
          axios.post('http://localhost:3300/api/users/create', {
          name: name,
          jaya: jaya,
          section: section,
          foor: foor,
          room: room,
-         miter: [miter]
+         miter: miter
        })
        .then(function (response) {
          console.log(response);
@@ -55,11 +55,12 @@ function FormAdduser(props) {
        .catch(function (error) {
          console.log(error);
        });
-         // send data to /users/create
+       select_futeur()
+         
       }
-      select_futeur()
       setName('');
       setJaya('');
+      setMiter([])
    }
  
    return (
