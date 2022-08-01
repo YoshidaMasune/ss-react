@@ -9,11 +9,13 @@ function AddUser(props) {
     room,
     name,
     jaya,
+    miter,
     setSection,
     setFoor,
     setRoom,
     setName,
-    setJaya
+    setJaya,
+    setMiter
   } = props
 
   return (
@@ -25,11 +27,13 @@ function AddUser(props) {
         room={room}
         name={name}
         jaya={jaya}
+        miter={miter}
         setSection={setSection} 
         setFoor={setFoor}
         setRoom={setRoom}
         setName={setName}
         setJaya={setJaya}
+        setMiter={setMiter}
       />
     </div>
    </>

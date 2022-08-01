@@ -50,12 +50,14 @@ function App() {
                   name={name}
                   jaya={jaya}
                   users={users}
+                  miter={miter}
                   setSection={setSection} 
                   setFoor={setFoor}
                   setRoom={setRoom}
                   setName={setName}
                   setJaya={setJaya} 
-                  setUsers={setUsers} /> 
+                  setUsers={setUsers}
+                  setMiter={setMiter} /> 
               } />
 
           
@@ -94,6 +96,7 @@ function App() {
                   jaya={jaya}
                   user={user}
                   users={users}
+                  miter={miter}
                   setSection={setSection} 
                   setFoor={setFoor}
                   setRoom={setRoom}
@@ -101,6 +104,7 @@ function App() {
                   setJaya={setJaya}
                   setuser={setUser}
                   setUsers={setUsers}
+                  setMiter={setMiter}
                 />
               } />
       

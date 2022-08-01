@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap'
 
 function Name(props) {
 
-   const { name, setName, user } = props;
+   const { name, setName, } = props;
 
    return (
       <Form.Group>

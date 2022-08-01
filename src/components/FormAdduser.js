@@ -5,13 +5,14 @@ import Foor from './formGroup/Foor';
 import Room from './formGroup/Room';
 import Section from './formGroup/Section';
 import Jaya from './formtext/Jaya';
-import Name from './formtext/Name'
+import Name from './formtext/Name';
+import Miter from './formGroup/Miter'
 
 
 function FormAdduser(props) {
    const {
-      section,foor,room,name,jaya,
-      setSection,setFoor,setRoom,setName,setJaya
+      section,foor,room,name,jaya,miter,
+      setSection,setFoor,setRoom,setName,setJaya,setMiter
    } = props;
 
    const select_futeur = () => { 
@@ -36,17 +37,17 @@ function FormAdduser(props) {
       e.preventDefault(); 
       
       // validate user_input
-      if(name === '' || jaya === ''){
+      if(name === '' || jaya === '' || name === undefined || jaya === undefined ){
          alert("input is not validation")
       }else{  
       //----> post API <----
-         select_futeur()
          axios.post('http://localhost:3300/api/users/create', {
          name: name,
          jaya: jaya,
          section: section,
          foor: foor,
          room: room,
+         miter: [miter]
        })
        .then(function (response) {
          console.log(response);
@@ -56,7 +57,7 @@ function FormAdduser(props) {
        });
          // send data to /users/create
       }
-
+      select_futeur()
       setName('');
       setJaya('');
    }
@@ -73,6 +74,7 @@ function FormAdduser(props) {
          <div className="container">
             <Name name={name} setName={setName} />
             <Jaya jaya={jaya} setJaya={setJaya} />
+            <Miter miter={miter}  setMiter={setMiter} />
 
             <Form.Group className=' d-flex justify-content-end'>
                <Button className='mt-4'  type="submit">

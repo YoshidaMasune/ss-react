@@ -11,8 +11,6 @@ function Home(props) {
    .then(response => response.json())
    .then( data => setUsers(data))
 }, []);
-
-  console.log(users);
   return (
     <>
     <div className="container">
